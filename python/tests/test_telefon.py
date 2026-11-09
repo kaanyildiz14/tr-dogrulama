@@ -32,3 +32,22 @@ def test_gecerli_cep_telefonlari(numara):
 )
 def test_hatali_girisler_gecersizdir(hatali_giris):
     assert telefon.gecerli_mi(hatali_giris) is False
+
+
+
+@pytest.mark.parametrize(
+    "numara",
+    [
+        "05001112233",
+        "5001112233",
+        "+905001112233",
+        "(0500) 111-22-33",
+    ],
+)
+def test_bicimlendir_tek_tip_yazim_uretir(numara):
+    assert telefon.bicimlendir(numara) == "0500 111 22 33"
+
+
+@pytest.mark.parametrize("hatali_giris", ["02320000000", "", None])
+def test_gecersiz_numara_bicimlendirilemez(hatali_giris):
+    assert telefon.bicimlendir(hatali_giris) is None
