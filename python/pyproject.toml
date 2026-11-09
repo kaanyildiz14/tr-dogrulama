@@ -1,3 +1,19 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tr-dogrulama"
+version = "0.1.0"
+description = "Türkiye'ye özgü verileri (TCKN, VKN, IBAN, telefon, plaka) doğrulayan ve biçimlendiren kütüphane"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Kaan Yıldız" }]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tr_dogrulama"]
+
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
