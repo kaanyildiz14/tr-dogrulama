@@ -31,3 +31,24 @@ def test_gecerli_ibanlar(numara):
 )
 def test_hatali_girisler_gecersizdir(hatali_giris):
     assert iban.gecerli_mi(hatali_giris) is False
+
+
+
+@pytest.mark.parametrize(
+    "numara",
+    [
+        GECERLI,
+        GECERLI.lower(),
+        "TR33 0006 1005 1978 6457 8413 26",
+    ],
+)
+def test_bicimlendir_dortlu_gruplar_uretir(numara):
+    assert iban.bicimlendir(numara) == "TR33 0006 1005 1978 6457 8413 26"
+
+
+@pytest.mark.parametrize(
+    "hatali_giris",
+    ["TR330006100519786457841327", "", None],
+)
+def test_gecersiz_iban_bicimlendirilemez(hatali_giris):
+    assert iban.bicimlendir(hatali_giris) is None

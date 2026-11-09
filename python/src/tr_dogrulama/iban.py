@@ -22,3 +22,13 @@ def gecerli_mi(numara):
 
     # 4. 97'ye bölümünden kalan 1 olmalı
     return int(sayi_metni) % 97 == 1
+
+
+
+def bicimlendir(numara):
+    if not gecerli_mi(numara):
+        return None
+
+    temiz = numara.replace(" ", "").upper()
+    gruplar = [temiz[i : i + 4] for i in range(0, len(temiz), 4)]
+    return " ".join(gruplar)
