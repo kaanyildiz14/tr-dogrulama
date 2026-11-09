@@ -1,4 +1,14 @@
 def gecerli_mi(numara):
+    # Hesaplamadan önce girişin biçimini kontrol et
+    if not isinstance(numara, str):
+        return False
+    if len(numara) != 11:
+        return False
+    if not (numara.isascii() and numara.isdigit()):
+        return False
+    if numara[0] == "0":
+        return False
+
     haneler = [int(h) for h in numara]
 
     # 1. 1, 3, 5, 7, 9. hanelerin toplamı
