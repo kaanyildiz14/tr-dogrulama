@@ -25,3 +25,15 @@ def gecerli_mi(numara):
 
     il_kodu = int(eslesme.group(1))
     return 1 <= il_kodu <= 81
+
+
+
+def bicimlendir(numara):
+    if not gecerli_mi(numara):
+        return None
+
+    temiz = numara.replace(" ", "").upper()
+    il, harfler, rakamlar = re.fullmatch(
+        "([0-9]{2})([A-Z]+)([0-9]+)", temiz
+    ).groups()
+    return f"{il} {harfler} {rakamlar}"

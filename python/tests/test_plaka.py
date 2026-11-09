@@ -36,3 +36,22 @@ def test_gecerli_plakalar(numara):
 )
 def test_hatali_girisler_gecersizdir(hatali_giris):
     assert plaka.gecerli_mi(hatali_giris) is False
+
+
+
+@pytest.mark.parametrize(
+    "girdi, beklenen",
+    [
+        ("35ab123", "35 AB 123"),
+        ("35A1234", "35 A 1234"),
+        ("01 ABC 12", "01 ABC 12"),
+        ("81abc123", "81 ABC 123"),
+    ],
+)
+def test_bicimlendir_parcalari_ayirir(girdi, beklenen):
+    assert plaka.bicimlendir(girdi) == beklenen
+
+
+@pytest.mark.parametrize("hatali_giris", ["00 A 1234", "", None])
+def test_gecersiz_plaka_bicimlendirilemez(hatali_giris):
+    assert plaka.bicimlendir(hatali_giris) is None
